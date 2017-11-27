@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>hh的花架子</title>
+	<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+	<style type="text/css">
+		body{
+			background-image: url("./background.jpg");
+			color: #f0f0f0
+		}
+	</style>
+</head>
+<body>
+<script src="./vue.min.js"></script>
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+<div id="app">
+<table>
+	<thead>
+		<th>
+			id
+		</th>
+		<th>
+			名称
+		</th>
+		<th>
+			分类
+		</th>
+		<th>
+			颜色
+		</th>
+		<th>
+			购买日期
+		</th>
+		<th>
+			价格
+		</th>
+		<th>
+			操作
+		</th>
+	</thead>
+	<tbody>
+		<tr style="text-align: center" v-for="i in lists">
+			<td>{{i.id}}</td>
+			<td>{{i.name}}</td>
+			<td>{{i.category}}</td>
+			<td><div style="width: 20px;height: 20px;margin-left: auto;margin-right: auto;position: relative;" :style="{background: i.color}"></div></td>
+			<td>{{i.date}}</td>
+			<td>{{i.price}}</td>
+			<td><el-button @click="del(i.id)">删除</el-button></td>
+		</tr>
+		<tr>
+			<td>{{currentID}}</td>
+			<td><el-input v-model="currentName" type="text" name=""></el-input></td>
+			<td><el-select v-model="currentCategory" type="text" name="">
+				<el-option value="短袖上衣">短袖上衣</el-option>
+				<el-option value="长袖上衣">长袖上衣</el-option>
+				<el-option value="长裤">长裤</el-option>
+				<el-option value="裙子">裙子</el-option>
+				<el-option value="连衣裙">连衣裙</el-option>
+				<el-option value="Bra">Bra</el-option>
+			</el-select></td>
+			<td><el-color-picker v-model="currentColor" name=""></el-color-picker></td>
+			<td><el-date-picker v-model="currentDate" name=""></el-date-picker></td>
+			<td><el-input-number v-model="currentPrice" type="number" name=""></el-input-number>元</td>
+			<td><el-button @click="add">增加</el-button></td>
+		</tr>
+	</tbody>
+</table>
+<p>总价：<span>{{sumPrice}}</span></p>
+</div>
+
+<script type="text/javascript">
+	var app=new Vue({
+		el:'#app',
+		data:{
+			lists:[],
+			currentID:1,
+			currentName:"",
+			currentCategory:"",
+			currentColor:"#000",
+			currentDate:"",
+			currentPrice:""
+		},
+		computed:{
+			sumPrice:function(){
+				let lists=this.lists;
+				let sum=0;
+				for(let i=0;i<lists.length;i++){
+					sum+=parseInt(lists[i].price)
+				}
+				return sum
+			}
+		},
+		methods:{
+			del(id){
+				let lists=this.lists;
+				for(let i=0;i<lists.length;i++){
+					if(id==lists[i].id){
+						lists.splice(i,1);
+					}
+				}
+			},
+			add(){
+				let lists=this.lists;
+				 if(!this.currentName){
+				 	alert("请输入名称");
+				 	return
+				 }
+				 if(!this.currentCategory){
+				 	alert("请选择类别");
+				 	return
+				 }
+				 // if(!this.currentColor){
+				 // 	alert("请选择颜色");
+				 // 	return
+				 // }
+				 if(!this.currentDate){
+				 	alert("请选择日期");
+				 	return
+				 }
+				 if(!this.currentPrice){
+				 	alert("请输入价格");
+				 	return
+				 }
+				 console.log(typeof this.currentDate)
+				lists.push({
+					id:this.currentID++,
+					name:this.currentName,
+					category:this.currentCategory,
+					color:this.currentColor,
+					date:this.currentDate,
+					price:this.currentPrice
+				})
+				this.currentName="";
+				this.currentCategory=""
+				this.currentColor="#000"
+				this.currentDate=""
+				this.currentPrice=""
+			}
+		}
+		// methods:{
+		// 	add:function(){
+		// 		this.lists.push({data:this.nextCount});
+		// 		this.nextCount++;
+		// 	},
+		// 	minus:function(){
+		// 		if(this.minusNum){
+		// 			let lists=this.lists;
+		// 			for(let i=0;i<lists.length;i++){
+		// 				if(this.minusNum==lists[i].data){
+		// 					lists.splice(i,1)
+		// 				}
+		// 			}
+		// 		}
+		// 	}
+		// },
+		// components:{
+		// 	"com":{
+		// 		props:['items'],
+		// 		template:"<li>{{items.data}}</li>",
+		// 		data:function(){
+		// 			return{
+		// 				list:[{data:"aa"},{data:"bb"}]
+		// 			}
+		// 		}
+		// 	}
+		// }
+	})
+</script>
+</body>
+</html>
