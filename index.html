@@ -50,18 +50,16 @@
 		</tr>
 		<tr>
 			<td>{{currentID}}</td>
-			<td><el-input v-model="currentName" type="text" name=""></el-input></td>
+			<td><el-input v-model="currentName" type="text" name="" placeholder="请输入名称"></el-input></td>
 			<td><el-select v-model="currentCategory" type="text" name="">
-				<el-option value="短袖上衣">短袖上衣</el-option>
-				<el-option value="长袖上衣">长袖上衣</el-option>
-				<el-option value="长裤">长裤</el-option>
-				<el-option value="裙子">裙子</el-option>
-				<el-option value="连衣裙">连衣裙</el-option>
-				<el-option value="Bra">Bra</el-option>
+				<el-option value="多肉植物">多肉植物</el-option>
+				<el-option value="叶片">叶片</el-option>
+				<el-option value="蔬菜">蔬菜</el-option>
+				<el-option value="热带植物">热带植物</el-option>
 			</el-select></td>
 			<td><el-color-picker v-model="currentColor" name=""></el-color-picker></td>
-			<td><el-date-picker v-model="currentDate" name=""></el-date-picker></td>
-			<td><el-input-number v-model="currentPrice" type="number" name=""></el-input-number>元</td>
+			<td><el-date-picker placeholder="请选择日期" format="yyyy 年 MM 月 dd 日" value-format="yyyy-MM-dd" v-model="currentDate" name=""></el-date-picker></td>
+			<td><el-input-number placeholder="请输入价格" v-model="currentPrice" type="number" name=""></el-input-number>元</td>
 			<td><el-button @click="add">增加</el-button></td>
 		</tr>
 	</tbody>
@@ -110,10 +108,6 @@
 				 	alert("请选择类别");
 				 	return
 				 }
-				 // if(!this.currentColor){
-				 // 	alert("请选择颜色");
-				 // 	return
-				 // }
 				 if(!this.currentDate){
 				 	alert("请选择日期");
 				 	return
@@ -138,33 +132,6 @@
 				this.currentPrice=""
 			}
 		}
-		// methods:{
-		// 	add:function(){
-		// 		this.lists.push({data:this.nextCount});
-		// 		this.nextCount++;
-		// 	},
-		// 	minus:function(){
-		// 		if(this.minusNum){
-		// 			let lists=this.lists;
-		// 			for(let i=0;i<lists.length;i++){
-		// 				if(this.minusNum==lists[i].data){
-		// 					lists.splice(i,1)
-		// 				}
-		// 			}
-		// 		}
-		// 	}
-		// },
-		// components:{
-		// 	"com":{
-		// 		props:['items'],
-		// 		template:"<li>{{items.data}}</li>",
-		// 		data:function(){
-		// 			return{
-		// 				list:[{data:"aa"},{data:"bb"}]
-		// 			}
-		// 		}
-		// 	}
-		// }
 	})
 </script>
 </body>
