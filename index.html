@@ -17,9 +17,6 @@
 <table>
 	<thead>
 		<th>
-			id
-		</th>
-		<th>
 			名称
 		</th>
 		<th>
@@ -40,7 +37,6 @@
 	</thead>
 	<tbody>
 		<tr style="text-align: center" v-for="i in lists">
-			<td>{{i.id}}</td>
 			<td>{{i.name}}</td>
 			<td>{{i.category}}</td>
 			<td><div style="width: 20px;height: 20px;margin-left: auto;margin-right: auto;position: relative;" :style="{background: i.color}"></div></td>
@@ -49,7 +45,6 @@
 			<td><el-button @click="del(i.id)">删除</el-button></td>
 		</tr>
 		<tr>
-			<td>{{currentID}}</td>
 			<td><el-input v-model="currentName" type="text" name="" placeholder="请输入名称"></el-input></td>
 			<td><el-select v-model="currentCategory" type="text" name="">
 				<el-option value="多肉植物">多肉植物</el-option>
